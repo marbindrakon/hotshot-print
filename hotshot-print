@@ -1,0 +1,18 @@
+#!/usr/bin/python2
+
+import sys
+import hotshot.stats
+
+def print_hotshot_stats(file_path):
+    """
+    Print hotshot stats from the given file path.
+    """
+    stats = hotshot.stats.load(file_path)
+    stats.sort_stats('time', 'call').print_stats()
+
+
+if __name__ == '__main__':
+    try:
+        print_hotshot_stats(sys.argv[1])
+    except IndexError:
+        print("Usage: hotshot-print <filename>")
